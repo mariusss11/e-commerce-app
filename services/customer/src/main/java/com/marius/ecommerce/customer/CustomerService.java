@@ -23,30 +23,30 @@ public class CustomerService {
         return customer.getId();
     }
 
-    public void updateCustomer(@Valid CustomerRequest requst) {
-        var customer = customerRepository.findById(requst.id())
+    public void updateCustomer(@Valid CustomerRequest request) {
+        var customer = customerRepository.findById(request.id())
                 .orElseThrow(() -> new CustomerNotFoundException(
-                        format("Cannot update customer:: No customer found with the provided ID :: %s", requst.id())
+                        format("Cannot update customer:: No customer found with the provided ID :: %s", request.id())
                 ));
-        mergeCustomer(customer, requst);
+        mergeCustomer(customer, request);
         customerRepository.save(customer);
     }
 
-    private void mergeCustomer(Customer customer, @Valid CustomerRequest requst) {
-        if (StringUtils.isNotBlank(requst.fistName())) {
-            customer.setFistName(requst.fistName());
+    private void mergeCustomer(Customer customer, @Valid CustomerRequest request) {
+        if (StringUtils.isNotBlank(request.fistName())) {
+            customer.setFistName(request.fistName());
         }
 
-        if (StringUtils.isNotBlank(requst.lastName())) {
-            customer.setLastName(requst.lastName());
+        if (StringUtils.isNotBlank(request.lastName())) {
+            customer.setLastName(request.lastName());
         }
 
-        if (StringUtils.isNotBlank(requst.email())) {
-            customer.setEmail(requst.email());
+        if (StringUtils.isNotBlank(request.email())) {
+            customer.setEmail(request.email());
         }
 
-        if (requst.address() != null) {
-            customer.setAddress(requst.address());
+        if (request.address() != null) {
+            customer.setAddress(request.address());
         }
 
     }

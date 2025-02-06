@@ -9,10 +9,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/customer")
-@RequiredArgsConstructor
 public class CustomerController {
 
     private final CustomerService customerService;
+
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
     @PostMapping
     public ResponseEntity<String> createCustomer(
