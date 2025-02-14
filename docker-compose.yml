@@ -29,16 +29,16 @@ services:
 #      - microservices-net
 #    restart: unless-stopped
 #
-#  mongodb:
-#    container_name: ms_mongo_db
-#    image: mongo
-#    ports:
-#      - 27017:27017
-#    volumes:
-#      - mongo:/data
-#    environment:
-#      - MONGO_INITDB_ROOT_USERNAME=marius
-#      - MONGO_INITDB_ROOT_PASSWORD=marius  # Fixed duplicate variable
+  mongodb:
+    container_name: ms_mongo_db
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/data
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=marius
+      - MONGO_INITDB_ROOT_PASSWORD=marius  # Fixed duplicate variable
 
   mongo-express:
     container_name: ms_mongo_express
@@ -81,14 +81,20 @@ services:
       - microservices-net
 
 
-#  mail-dev:
-#    container_name: ms_mail_dev
-#    image: maildev/maildev
-#    ports:
-#      - 1080:1080
-#      - 1025:1025
+  mail-dev:
+    container_name: ms_mail_dev
+    image: maildev/maildev
+    ports:
+      - 1080:1080
+      - 1025:1025
 
-
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    ports:
+      - 9411:9411
+    networks:
+      - microservices-net
 
 networks:
   microservices-net:
