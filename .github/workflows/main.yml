@@ -52,10 +52,10 @@ jobs:
     name: My first job
     runs-on: ubuntu-latest
     steps:
-    - run: echo Hello from the first!
+      - run: echo Hello from the first!
   job2-name:
     name: My second job
-    - run: echo Hello from the second!
+      - run: echo Hello from the second!
     needs: job1
     
       
