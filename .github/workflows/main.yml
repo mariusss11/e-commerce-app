@@ -1,8 +1,17 @@
+# The name of the Workflow
 name: GitHub Actions Demo
+# A description of the Workflow
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+# The action that triggers this Workflow
+# More info here (https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/triggering-a-workflow)
 on: [push]
+# The jobs that we have
 jobs:
+  # The name of the job
   Explore-GitHub-Actions:
+
+    # Define the type of machine to run the job on
+    # More info here (https://docs.github.com/en/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -17,7 +26,35 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
-  test:
-    runs-on: linux
+  container-test-job:
+    runs-on: ubuntu-latest
+    container:
+      image: node:18
+      env:
+        NODE_ENV: development
+      ports:
+        - 80
+      volumes:
+        - my_docker_volume:/volume_mount
+      options: --cpus 1
+    steps:
+      - name: Check for dockerenv file
+        run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
+
+  # The name of the job 
+  Test:
+    runs-on: ubuntu-latest
     steps:
     - run: echo Hello world!
+    - run: echo format('{{Hello {0} {1} {2}!}}', 'Mona', 'the', 'Octocat')
+
+  job1-name:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo Hello from job1!
+    job2-name:
+      - run: echo Hello from job1!
+      needs: job1
+    
+      
+
