@@ -48,13 +48,15 @@ jobs:
     - run: echo Hello world!
     - run: echo format('{{Hello {0} {1} {2}!}}', 'Mona', 'the', 'Octocat')
 
-  job1-name:
+  job1:
+    name: My first job
     runs-on: ubuntu-latest
     steps:
-    - run: echo Hello from job1!
-    job2-name:
-      - run: echo Hello from job1!
-      needs: job1
+    - run: echo Hello from the first!
+  job2-name:
+    name: My second job
+    - run: echo Hello from the second!
+    needs: job1
     
       
 
