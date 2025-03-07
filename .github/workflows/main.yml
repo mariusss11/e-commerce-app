@@ -10,8 +10,10 @@ jobs:
   Connect-to-Netlify:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Installing npm"
+      - run: echo "Installing netlify"
       - run: npm install netlify-cli --save-dev
+      - run: netlify login
+      # nfp_w7ddzgLs3twhkmKXESNMQh96wB4YSD7Pbfde
 
 
   # The name of the job
