@@ -16,8 +16,6 @@ jobs:
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v3.0
-        steps:
-        - run: netlify status
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         timeout-minutes: 1
