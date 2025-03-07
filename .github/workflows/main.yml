@@ -7,58 +7,62 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 # The jobs that we have
 jobs:
+
+  Connect to Netlify:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Installing npm"
+      - run: npm install netlify-cli --save-dev
+
+
   # The name of the job
-  Explore-GitHub-Actions:
+  # Explore-GitHub-Actions:
 
-    # Define the type of machine to run the job on
-    # More info here (https://docs.github.com/en/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+  #   # Define the type of machine to run the job on
+  #   # More info here (https://docs.github.com/en/actions/writing-workflows/choosing-where-your-workflow-runs/choosing-the-runner-for-a-job)
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+  #     - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+  #     - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+  #     - name: Check out repository code
+  #       uses: actions/checkout@v4
+  #     - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+  #     - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+  #     - name: List files in the repository
+  #       run: |
+  #         ls ${{ github.workspace }}
+  #     - run: echo "🍏 This job's status is ${{ job.status }}."
 
-  container-test-job:
-    runs-on: ubuntu-latest
-    container:
-      image: node:18
-      env:
-        NODE_ENV: development
-      ports:
-        - 80
-      volumes:
-        - my_docker_volume:/volume_mount
-      options: --cpus 1
-    steps:
-      - name: Check for dockerenv file
-        run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
+  # container-test-job:
+  #   runs-on: ubuntu-latest
+  #   container:
+  #     image: node:18
+  #     env:
+  #       NODE_ENV: development
+  #     ports:
+  #       - 80
+  #     volumes:
+  #       - my_docker_volume:/volume_mount
+  #     options: --cpus 1
+  #   steps:
+  #     - name: Check for dockerenv file
+  #       run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
 
-  # The name of the job 
-  Test:
-    runs-on: ubuntu-latest
-    steps:
-    - run: echo Hello world!
-    - run: echo format('{{Hello {0} {1} {2}!}}', 'Mona', 'the', 'Octocat')
+  # job1:
+  #   name: My first job
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - run: echo Hello from the first job!
+  # job2-name:
+  #   name: My second job
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - run: echo Hello from the second job!
+  #   needs: job1
 
-  job1:
-    name: My first job
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo Hello from the first job!
-  job2-name:
-    name: My second job
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo Hello from the second job!
-    needs: job1
+  
     
+
       
 
