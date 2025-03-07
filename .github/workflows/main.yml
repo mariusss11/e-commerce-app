@@ -7,8 +7,7 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 # The jobs that we have
 jobs:
-
-  Connect to Netlify:
+  Connect-to-Netlify:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Installing npm"
